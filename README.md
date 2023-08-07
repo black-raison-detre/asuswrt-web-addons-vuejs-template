@@ -1,1 +1,1 @@
-# asuswrt-plugin-example
+# asuswrt-web-addons-vuejs-template
