@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+  <link rel="shortcut icon" href="images/favicon.png">
+  <link rel="icon" href="images/favicon.png">
+  <title>ASUS Wireless Router GT-AC2900 - Test App</title>
+  <link rel="stylesheet" type="text/css" href="index_style.css">
+  <link rel="stylesheet" type="text/css" href="form_style.css">
+  <style>
+    p{
+      font-weight: bolder;
+    }
+    .tableApi_table th {
+      height: 20px;
+      text-align: left;
+    }
+    .tableApi_table td {
+      text-align: left;
+    }
+    .data_tr {
+      height: 30px;
+    }
+    .row_title th {
+      width: unset;
+    }
+  </style>
+</head>
+<body class="bg" style>
+  <div id="TopBanner">
+    <div class="banner1" align="center">
+      <img src="images/New_ui/asustitle.png" width="218" height="54" align="left">
+      <div style="margin-top:13px;margin-left:-90px;*margin-top:0px;*margin-left:0px;" align="center">
+        <span id="modelName_top" class="modelName_top">GT-AC2900</span>
+      </div>
+      <div style="margin-left:25px;width:160px;height:52px;margin-top:0px;float:left;" align="left">
+        <span>
+          <a href="https://www.asuswrt-merlin.net/" target="_blank" rel="noreferrer">
+            <img src="images/merlin-logo.png" style="border: 0;">
+          </a>
+        </span>
+      </div>
+      <a href="#">
+        <div style="margin-top:13px;margin-left:25px; *width:136px;" class="titlebtn" align="center">
+          <span>Logout</span>
+        </div>
+      </a>
+      <a href="#">
+        <div style="margin-top:13px;margin-left:0px;*width:136px;" class="titlebtn" align="center">
+          <span>Reboot</span>
+        </div>
+      </a>
+      <ul class="navigation">
+        <li><dl>
+          <a href="#"><dt id="selected_lang">English</dt></a>
+          <dd><a id="CN">简体中文</a></dd>
+        </dl></li>
+      </ul>
+    </div>
+    <table width="998" border="0" align="center" cellpadding="0" cellspacing="0" class="statusBar" style="margin:auto;">
+      <tbody><tr>
+        <td class="minup_bg" height="179" valign="top">
+          <table width="764" border="0" cellpadding="0" cellspacing="0" height="35px" style="margin-left:230px;">
+            <tbody><tr>
+              <td valign="center" class="titledown" width="auto">
+                <span style="font-family:Verdana, Arial, Helvetica, sans-serif;">
+                  Operation Mode:
+                  <span class="title_link" style="text-decoration: none;" id="op_link">
+                    <a href="#" style="color:white">
+                      <span id="sw_mode_span" style="text-decoration: underline;">Wireless router</span>
+                    </a>
+                  </span>
+                  <span style="font-family:Verdana, Arial, Helvetica, sans-serif;">
+                    Firmware:
+                    <a href="#" style="color:white;">
+                      <span id="firmver" class="title_link">386.11</span>
+                    </a>
+                    <span style="font-family:Verdana, Arial, Helvetica, sans-serif;" id="ssidTitle">
+                      SSID:
+                      <span id="elliptic_ssid_2g" class="title_link" title="Smart Connect: asus_router_test">asus_router_test</span>
+                      <span id="elliptic_ssid_5g" class="title_link" title="5 GHz: asus_router_test" style="display: none;">asus_router_test</span>
+                    </span>
+                  </span>
+                </span>
+              </td>
+              <td width="30" id="notification_status1" class="notificationOn">
+                <div id="notification_status" class="notificationOn"></div>
+                <div id="notification_desc" class=""></div>
+              </td>
+              <td width="30"><div id="wifi_hw_sw_status" class="wifihwswstatuson"></div></td>
+              <td width="30"><div id="guestnetwork_status" style="width:30px;" class="guestnetworkstatusoff"></div></td>
+              <td width="30"><div id="connect_status" class="connectstatuson"></div></td>
+              <td width="30"><div id="usb_status" class="usbstatuson"></div></td>
+              <td width="30" style="display:none"><div id="printer_status" class="printstatusoff"></div></td>
+              <td width="17"></td>
+            </tr></tbody>
+          </table>
+        </td>
+      </tr></tbody>
+    </table>
+  </div>
+  <form method="post" name="form" id="ruleForm">
+    <table class="content" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="17">&nbsp;</td>
+        <td valign="top" width="202">
+          <div id="mainMenu">
+            <div style="margin-top:-172px">
+              <div class="menu menu_QIS_title" title="QIS_wizard.htm" id="QIS_wizard_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_QIS"></div>
+                  </td><td class="menu_Desc">Quick Internet Setup</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu_Split">
+                <table width="192px" height="30px">
+                  <tbody><tr><td>General</td></tr></tbody>
+                </table>
+              </div>
+              <div class="menu" title="index.asp" id="index_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_Index"></div></td>
+                  <td class="menu_Desc">Network Map</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="AiMesh.asp" id="AiMesh_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_AiMesh"></div></td>
+                  <td class="menu_Desc">AiMesh</td></tr>
+                </tbody></table>
+              </div>
+              <div class="menu" title="Guest_network.asp" id="Guest_network_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_GuestNetwork"></div></td>
+                  <td class="menu_Desc">Guest Network</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="AiProtection_HomeProtection.asp" id="AiProtection_HomeProtection_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_AiProtection"></div></td>
+                  <td class="menu_Desc">AiProtection</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="AiProtection_WebProtector.asp" id="AiProtection_WebProtector_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_ParentalControl"></div></td>
+                  <td class="menu_Desc">Parental Controls</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="AdaptiveQoS_Bandwidth_Monitor.asp" id="AdaptiveQoS_Bandwidth_Monitor_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_BandwidthMonitor"></div></td>
+                  <td class="menu_Desc">Adaptive QoS</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="Main_TrafficMonitor_realtime.asp" id="Main_TrafficMonitor_realtime_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_TrafficAnalyzer"></div></td>
+                  <td class="menu_Desc">Traffic Analyzer</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="GameBoost.asp" id="GameBoost_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_GameBoost"></div></td>
+                  <td class="menu_Desc">Game</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="GameProfile.asp" id="GameProfile_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_OpenNAT"></div></td>
+                  <td class="menu_Desc">Open NAT</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="APP_Installation.asp" id="APP_Installation_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_APP"></div></td>
+                  <td class="menu_Desc">USB Application</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="cloud_main.asp" id="cloud_main_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_AiCloud"></div></td>
+                  <td class="menu_Desc">AiCloud 2.0</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu" title="Tools_Sysinfo.asp" id="Tools_Sysinfo_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_Tools"></div></td>
+                  <td class="menu_Desc">Tools</td>
+                </tr></tbody></table>
+              </div>
+              <div class="menu_Split">
+                <table width="192px" height="30px"><tbody><tr><td>Addons</td></tr></tbody></table>
+              </div>
+              <div class="menu menuClicked" title="test_addon.asp" id="test_addon_menu">
+                <table><tbody><tr>
+                  <td><div class="menu_Icon menu_Tools"></div></td>
+                  <td class="menu_Desc">Test Addon</td>
+                </tr></tbody></table>
+              </div>
+            </div>
+            <div class="menu_Split">
+              <table width="192px" height="30px"><tbody><tr><td>Advanced Settings</td></tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_Wireless_Content.asp" id="Advanced_Wireless_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_Wireless"></div></td>
+                <td class="menu_Desc">Wireless</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_LAN_Content.asp" id="Advanced_LAN_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_LAN"></div></td>
+                <td class="menu_Desc">LAN</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_WAN_Content.asp" id="Advanced_WAN_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_WAN"></div></td>
+                <td class="menu_Desc">WAN</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_Smart_Home_Alexa.asp" id="Advanced_Smart_Home_Alexa_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_Alexa_IFTTT"></div></td>
+                <td class="menu_Desc">Alexa &amp; IFTTT</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_IPv6_Content.asp" id="Advanced_IPv6_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_IPv6"></div></td>
+                <td class="menu_Desc">IPv6</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_VPNStatus.asp" id="Advanced_VPNStatus_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_VPN"></div></td>
+                <td class="menu_Desc">VPN</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_BasicFirewall_Content.asp" id="Advanced_BasicFirewall_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_Firewall"></div></td>
+                <td class="menu_Desc">Firewall</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Advanced_OperationMode_Content.asp" id="Advanced_OperationMode_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_Setting"></div></td>
+                <td class="menu_Desc">Administration</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Main_LogStatus_Content.asp" id="Main_LogStatus_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_Log"></div></td>
+                <td class="menu_Desc">System Log</td>
+              </tr></tbody></table>
+            </div>
+            <div class="menu" title="Main_Analysis_Content.asp" id="Main_Analysis_Content_menu">
+              <table><tbody><tr>
+                <td><div class="menu_Icon menu_NekworkTool"></div></td>
+                <td class="menu_Desc">Network Tools</td>
+              </tr></tbody></table>
+            </div>
+          </div>
+          <div id="subMenu"></div>
+        </td>
+        <td valign="top">
+          <div id="tabMenu" class="submenuBlock"></div>
+          <br>
+          <!--===================================Beginning of Main Content===========================================-->
+          <div id="app"></div>
+          <script type="module" src="/src/main.ts"></script>
+          <!--===================================Ending of Main Content===========================================-->
+        </td>
+        <td width="10" align="center" valign="top">&nbsp;</td>
+      </tr></tbody>
+    </table>
+    <div id="footer">
+      <div align="center" class="bottom-image"></div>
+      <div align="center" class="copyright">2022 ASUSTeK Computer Inc. All rights reserved.</div>
+      <br>
+      <div style="margin-top:-75px;margin-left:205px;">
+        <table width="765px" border="0" align="center" cellpadding="0" cellspacing="0"><tbody><tr>
+          <td width="20" align="right"><div id="bottom_help_icon" style="margin-right:3px;"></div></td>
+          <td width="110" id="bottom_help_title" align="left">Help &amp; Support</td>
+          <td width="335" id="bottom_help_link" align="left">
+            <a target="_blank" rel="noreferrer" href="https://nw-dlcdnet.asus.com/support/forward.html?model=GT-AC2900&amp;type=Manual&amp;lang=EN&amp;kw=&amp;num=" style="font-weight: bolder;text-decoration:underline;cursor:pointer;">Manual</a>
+            &nbsp;|&nbsp;
+            <a id="registration_link" target="_blank" rel="noreferrer" href="https://account.asus.com?lang=en-us" style="font-weight: bolder;text-decoration:underline;cursor:pointer;">Product Registration</a>
+            &nbsp;|&nbsp;
+            <span id="app_icon" style="font-weight:bolder;text-decoration:underline;cursor:pointer;">App</span>
+            <div id="app_link_table" style="display:none;width:325px;height:360px;position:relative;top:-380px;background-color:rgb(35, 38, 41);z-index:10;margin-top:13px;margin-left:-170px;;border-radius:5px;box-shadow:3px 3px 4px #000;opacity:.95">
+              <div style="padding:10px;">
+                <div id="cancel_app" style="width:20px;height:20px;background:url('images/button-close.png') no-repeat;position:absolute;right:10px;"></div>
+              </div>
+              <div style="padding:10px;border-bottom:1px solid #666;">
+                <div style="display:table-cell;vertical-align:middle;padding-left:10px;">
+                  <div style="width:75px;height:75px;background:url('images/New_ui/asus_router.png') no-repeat;"></div>
+                </div>
+                <div style="display:table-cell;">
+                  <div style="padding:5px 0 5px 15px;font-size:22px;">ASUS Router</div>
+                  <div style="padding:5px 0 5px 15px;font-size:14px;color:#BDBDBD">ASUS Router is a mobile app for managing your home network.</div>
+                </div>
+              </div>
+              <div style="padding:20px 10px;">
+                <div style="display:table-cell;vertical-align:middle;padding-left:10px;">
+                  <div><img src="images/New_ui/asus_router_android_qr.png" style="width:75px;height:75px;"></div>
+                </div>
+                <div style="display:table-cell;vertical-align:middle;width:100%;text-align:center">
+                  <div style="padding-left: 30px;">
+                    <a href="https://dlcdnets.asus.com/pub/ASUS/LiveUpdate/Release/Wireless/ASUSRouter_Android_Release.apk" target="_blank"><div style="width:160px;font-size:24px;border:1px solid #BDBDBD;padding: 10px 4px;border-radius: 6px;margin: auto;">Android App</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:20px 10px;">
+                <div style="display:table-cell;vertical-align:middle;padding-left:10px;">
+                  <div><img src="images/New_ui/asus_router_ios_qr.png" style="width:75px;height:75px;"></div>
+                </div>
+                <div style="display:table-cell;vertical-align:middle;width:100%;text-align:center">
+                  <div style="padding-left: 30px;">
+                    <a href="https://itunes.apple.com/tw/app/asus-router/id1033794044" target="_blank">
+                      <div style="width:160px;height:46px;background:url('images/AppStore.png') no-repeat;background-size:100%;margin:auto;"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td width="270" id="bottom_help_FAQ" align="right" style="font-family:Arial, Helvetica, sans-serif;">
+            FAQ&nbsp;&nbsp;
+            <input type="text" id="FAQ_input" class="input_FAQ_table" maxlength="40" autocorrect="off" autocapitalize="off">
+          </td>
+          <td width="30" align="left">
+            <div id="bottom_help_FAQ_icon" class="bottom_help_FAQ_icon" style="cursor:pointer;margin-left:3px;" target="_blank"></div>
+          </td>
+        </tr></tbody></table>
+      </div>
+    </div>
+  </form>
+</body>
+</html>
