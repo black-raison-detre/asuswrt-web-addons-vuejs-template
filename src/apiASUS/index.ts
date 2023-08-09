@@ -91,13 +91,13 @@ export const nvram = {
 	 */
 	get: async (keys: string | string[]): Promise<strObj> => {
 		if (Array.isArray(keys)) {
-			const resp = appGet(keys.map((key) => 'nvram_get(' + key + ')'));
+			const resp = await appGet(keys.map((key) => 'nvram_get(' + key + ')'));
 			if (Object.keys(resp).length > 0)
 				return resp as unknown as strObj;
 			else
 				return {};
 		} else {
-			const resp = appGet('nvram_get(' + keys + ')');
+			const resp = await appGet('nvram_get(' + keys + ')');
 			if (Object.keys(resp).length > 0)
 				return resp as unknown as strObj;
 			else
@@ -271,19 +271,34 @@ function bota(input: string): string {
 }
 
 /**
+ * trim function from Main_Login.asp for formating username
+ * @param  {string} val username
+ * @return {string}     formated username
+ */
+function trim(val: string): string {
+	val = val + '';
+	for (var startIndex = 0; startIndex < val.length && val.substring(startIndex,startIndex + 1) == ' '; startIndex++) {
+	}
+	for (var endIndex = val.length - 1; endIndex > startIndex && val.substring(endIndex, endIndex + 1) == ' '; endIndex--) {
+	}
+	return val.substring(startIndex, endIndex + 1);
+
+}
+
+/**
  * ASUSWRT web UI Login
  * @param  {string}           username username
  * @param  {string}           password password
  * @return {Promise<boolean>}          true if success
  */
 export async function login(username: string, password: string): Promise<boolean> {
-	const loginForm = new FormData();
-	loginForm.append('login_authorization', bota(username + ':' + password));
-	const resp = await fetch(loginCgiPath, new fetchOptions('POST', loginForm));
+	const loginInfo = new URLSearchParams('login_authorization=' + bota(trim(username) + ':' + password));
+	const resp = await fetch(loginCgiPath, new fetchOptions('POST', loginInfo));
 	if (resp.ok) {
 		try {
 			const htmlParser = new DOMParser();
 			const loginRet = htmlParser.parseFromString(await resp.text(), 'text/html');
+			console.log(loginRet);
 			if (loginRet.head.getElementsByTagName('meta')[0].getAttribute('http-equiv') === 'refresh')
 				return true;
 			else

@@ -22,15 +22,15 @@ export default defineConfig({
     proxy: {
       '/appGet.cgi': {
         target: routerIP,
-        changeOrigin: true
+        changeOrigin: false
       },
       '/applyapp.cgi': {
         target: routerIP,
-        changeOrigin: true
+        changeOrigin: false
       },
       '/login.cgi': {
         target: routerIP,
-        changeOrigin: true
+        changeOrigin: false
       }
     }
   }
