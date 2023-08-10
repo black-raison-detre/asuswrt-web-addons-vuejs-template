@@ -13,7 +13,10 @@ import {
 	wClientList,
 	lanHwaddr,
 	channelList2G,
-	channelList5G
+	channelList5G,
+	cpuUsage,
+	memUsage,
+	portState
 } from './types.ts';
 
 // ASUSwrt appGet.cgi path
@@ -132,7 +135,7 @@ export const nvram = {
  * Store the customSettings gets values, so no repeat getting
  * @type {strObj}
  */
-var customSettingStore: strObj;
+var customSettingStore: strObj = {};
 
 /**
  * ASUSWRT-Merlin Addons's Custom_settings
@@ -282,7 +285,6 @@ function trim(val: string): string {
 	for (var endIndex = val.length - 1; endIndex > startIndex && val.substring(endIndex, endIndex + 1) == ' '; endIndex--) {
 	}
 	return val.substring(startIndex, endIndex + 1);
-
 }
 
 /**
@@ -298,7 +300,6 @@ export async function login(username: string, password: string): Promise<boolean
 		try {
 			const htmlParser = new DOMParser();
 			const loginRet = htmlParser.parseFromString(await resp.text(), 'text/html');
-			console.log(loginRet);
 			if (loginRet.head.getElementsByTagName('meta')[0].getAttribute('http-equiv') === 'refresh')
 				return true;
 			else
@@ -312,100 +313,142 @@ export async function login(username: string, password: string): Promise<boolean
 }
 
 /**
- * ASUSWRT HTTPAPI
- * @type {Object}
+ * A way to get executed cmd on router return with webUI
+ * output the cmd stdout to /tmp/syscmd.log and wrap it with ""
+ * @return {Promise<string | null>} return a string
  */
-export const httpAPI = {
-	clientList: async (): Promise<clientList | null> => {
-		const resp = await appGet('get_clientlist()');
-		if ('get_clientlist' in resp)
-			return resp['get_clientlist'] as clientList;
-		else
-			return null;
-	},
-	wiredClientList: async (): Promise<wiredClientList | null> => {
-		const resp = appGet('get_wiredclientlist()');
-		if ('get_wiredclientlist' in resp)
-			return resp['get_wiredclientlist'] as wiredClientList;
-		else
-			return null;
-	},
-	wClientList: async (): Promise<wClientList | null> => {
-		const resp = appGet('get_wclientlist()');
-		if ('get_wclientlist' in resp)
-			return resp['get_wclientlist'] as wClientList;
-		else
-			return null;
-	},
-	cfgClientList: async (): Promise<cfgClientList | null> => {
-		const resp = await appGet('get_cfg_clientlist()');
-		if ('get_cfg_clientlist' in resp)
-			return resp['get_cfg_clientlist'] as cfgClientList;
-		else
-			return null;
-	},
-	clientlisFromJsonDatabase: async (): Promise<clientlistFromJsonDatabase | null> => {
-		const resp = await appGet('get_clientlist_from_json_database()');
-		if ('get_clientlist_from_json_database' in resp)
-			return resp['get_clientlist_from_json_database'] as clientlistFromJsonDatabase;
-		else
-			return null;
-	},
-	onBoradingStatus: async (): Promise<onBoradingStatus | null> => {
-		const resp = await appGet('get_onboardingstatus()');
-		if ('get_onboardingstatus' in resp)
-			return resp['get_onboardingstatus'] as onBoradingStatus;
-		else
-			return null;
-	},	
-	sambaInfo: async (): Promise<sambaInfo | null> => {
-		const resp = await appGet('get_SambaInfo()');
-		if ('get_SambaInfo' in resp)
-			return resp['get_SambaInfo'] as sambaInfo;
-		else
-			return null;
-	},
-	defaultRebootTime: async (): Promise<defaultRebootTime | null> => {
-		const resp = await appGet('get_default_reboot_time()');
-		if ('get_default_reboot_time' in resp)
-			return resp['get_default_reboot_time'] as defaultRebootTime;
-		else
-			return null;
-	},
-	ethernetWanList: async (): Promise<ethernetWanList | null> => {
-		const resp = appGet('get_ethernet_wan_list()');
-		if ('get_ethernet_wan_list' in resp)
-			return resp['get_ethernet_wan_list'] as ethernetWanList;
-		else
-			return null;
-	},
-	lanHwaddr: async (): Promise<lanHwaddr | null> => {
-		const resp = await appGet('get_lan_hwaddr()');
-		if ('get_lan_hwaddr' in resp)
-			return resp['get_lan_hwaddr'] as lanHwaddr;
-		else
-			return null;
-	},
-	channeList5g: async (): Promise<channelList5G | null> => {
-		const resp = await appGet('channel_list_5g()');
-		if ('channel_list_5g' in resp)
-			return resp['channel_list_5g'] as channelList5G;
-		else
-			return null;
-	},
-	channelList5g_2: async (): Promise<channelList5G | null> => {
-		const resp = await appGet('channel_list_5g_2()');
-		if ('channel_list_5g_2' in resp)
-			return resp['channel_list_5g_2'] as channelList5G;
-		else
-			return null;
-	},
-	channelList2g: async (): Promise<channelList2G | null> => {
-		const resp = await appGet('channel_list_2g()');
-		if ('channel_list_2g' in resp)
-			return resp['channel_list_2g'] as channelList2G;
-		else
-			return null;
-	}
+export async function sysCMDRet(): Promise<string | null> {
+	const resp = await appGet('nvram_dump("syscmd.log","")');
+	if ('nvram_dump-syscmd.log' in resp)
+		return resp['nvram_dump-syscmd.log'] as string;
+	else
+		return null;
 }
 
+export async function clientList(): Promise<clientList | null> {
+	const resp = await appGet('get_clientlist()');
+	if ('get_clientlist' in resp)
+		return resp['get_clientlist'] as clientList;
+	else
+		return null;
+}
+
+export async function wiredClientList(): Promise<wiredClientList | null> {
+	const resp = appGet('get_wiredclientlist()');
+	if ('get_wiredclientlist' in resp)
+		return resp['get_wiredclientlist'] as wiredClientList;
+	else
+		return null;
+}
+
+export async function wClientList(): Promise<wClientList | null> {
+	const resp = appGet('get_wclientlist()');
+	if ('get_wclientlist' in resp)
+		return resp['get_wclientlist'] as wClientList;
+	else
+		return null;
+}
+
+export async function cfgClientList(): Promise<cfgClientList | null> {
+	const resp = await appGet('get_cfg_clientlist()');
+	if ('get_cfg_clientlist' in resp)
+		return resp['get_cfg_clientlist'] as cfgClientList;
+	else
+		return null;
+}
+
+export async function clientlisFromJsonDatabase(): Promise<clientlistFromJsonDatabase | null> {
+	const resp = await appGet('get_clientlist_from_json_database()');
+	if ('get_clientlist_from_json_database' in resp)
+		return resp['get_clientlist_from_json_database'] as clientlistFromJsonDatabase;
+	else
+		return null;
+}
+
+export async function onBoradingStatus(): Promise<onBoradingStatus | null> {
+	const resp = await appGet('get_onboardingstatus()');
+	if ('get_onboardingstatus' in resp)
+		return resp['get_onboardingstatus'] as onBoradingStatus;
+	else
+		return null;
+}
+
+export async function sambaInfo(): Promise<sambaInfo | null> {
+	const resp = await appGet('get_SambaInfo()');
+	if ('get_SambaInfo' in resp)
+		return resp['get_SambaInfo'] as sambaInfo;
+	else
+		return null;
+}
+
+export async function defaultRebootTime(): Promise<defaultRebootTime | null> {
+	const resp = await appGet('get_default_reboot_time()');
+	if ('get_default_reboot_time' in resp)
+		return resp['get_default_reboot_time'] as defaultRebootTime;
+	else
+		return null;
+}
+
+export async function ethernetWanList(): Promise<ethernetWanList | null> {
+	const resp = appGet('get_ethernet_wan_list()');
+	if ('get_ethernet_wan_list' in resp)
+		return resp['get_ethernet_wan_list'] as ethernetWanList;
+	else
+		return null;
+}
+
+export async function lanHwaddr(): Promise<lanHwaddr | null> {
+	const resp = await appGet('get_lan_hwaddr()');
+	if ('get_lan_hwaddr' in resp)
+		return resp['get_lan_hwaddr'] as lanHwaddr;
+	else
+		return null;
+}
+
+export async function channeList5g(): Promise<channelList5G | null> {
+	const resp = await appGet('channel_list_5g()');
+	if ('channel_list_5g' in resp)
+		return resp['channel_list_5g'] as channelList5G;
+	else
+		return null;
+}
+
+export async function channelList5g_2(): Promise<channelList5G | null> {
+	const resp = await appGet('channel_list_5g_2()');
+	if ('channel_list_5g_2' in resp)
+		return resp['channel_list_5g_2'] as channelList5G;
+	else
+		return null;
+}
+
+export async function channelList2g(): Promise<channelList2G | null> {
+	const resp = await appGet('channel_list_2g()');
+	if ('channel_list_2g' in resp)
+		return resp['channel_list_2g'] as channelList2G;
+	else
+		return null;
+}
+
+export async function cpuUsage(): Promise<cpuUsage | null> {
+	const resp = await appGet('cpu_usage()');
+	if ('cpu_usage' in resp)
+		return resp['cpu_usage'] as cpuUsage;
+	else
+		return null;
+}
+
+export async function memUsage(): Promise<memUsage | null> {
+	const resp = await appGet('memory_usage()');
+	if ('memory_usage' in resp)
+		return resp['memory_usage'] as memUsage;
+	else
+		return null;
+}
+
+export async function portState(): Promise<portState | null> {
+	const resp = await appGet('get_wan_lan_status()');
+	if ('get_wan_lan_status' in resp)
+		return resp['get_wan_lan_status'] as portState;
+	else
+		return null;
+}

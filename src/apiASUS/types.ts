@@ -13,7 +13,7 @@ export interface strObj {
 // actionOnly: no extra cmd, just the action_mode
 type ActionMode =
 'apply' | // For applying nvram value + action_script
-' Reflesh ' | // Run an systemCmd
+' Refresh ' | // Run an systemCmd
 ' Restart ' | 'reboot' | 'Restore' | 'restore' | 'restore_erase' | 'logout' | // actionOnly
 'change_wl_unit' | 'change_wps_unit' | 'wps_apply' | 'wps_reset' |
 'change_wan_unit' | 'change_lan_unit' | 'change_dslx_transmode' | 
@@ -291,3 +291,46 @@ export type channelList5G = channelNumber5G[];
  * @type {[type]}
  */
 export type channelList2G = channelNumber2G[];
+
+type cpuInfo = {
+  total: Num,
+  usage: Num
+}
+
+/**
+ * cpuUsage api return
+ */
+export interface cpuUsage {
+  cpu0: cpuInfo,
+  cpu1?: cpuInfo,
+  cpu2?: cpuInfo,
+  cpu3?: cpuInfo
+}
+
+/**
+ * memUsage api return
+ */
+export interface memUsage {
+    total: Num,
+    free: Num,
+    used: Num
+}
+
+/**
+ * t: 10Mbps, M: 100Mbps, G: 1Gbps, Q: 2.5Gbps, F: 5Gbps, T: 10Gbps, X: unplugged
+ * @type {String}
+ */
+type portSpeed = 't' | 'M' | 'G' | 'Q' | 'F' | 'T' | 'X';
+
+/**
+ * portState api return
+ */
+export interface portState {
+  portCount: {
+    wanCount: Num,
+    lanCount: Num
+  }
+  portSpeed: {
+    [port: string]: portSpeed
+  }
+}
